@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>第一个HTML页面</title>
+</head>
+<body>
+<h1>Hello Spring Boot!!!</h1>
+<p th:text="${hello}"></p>
+<script>
+    var socketUrl="ws://devwebsocket.dmall.com:80/websocket/"+10;
+    socket = new WebSocket(socketUrl);
+
+    socket.onopen = function() {
+        console.log("websocket已打开");
+        socket.send('1234');
+    };
+
+    socket.onmessage = function(msg) {
+        var serverMsg = "收到服务端信息：" + msg.data;
+        console.log(serverMsg);
+    };
+
+    socket.onclose = function() {
+        console.log("websocket已关闭");
+    };
+
+    socket.onerror = function() {
+        console.log("websocket发生了错误");
+    }
+</script>
+</body>
+</html>
